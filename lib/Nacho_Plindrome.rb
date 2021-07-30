@@ -1,18 +1,21 @@
 require "Nacho_Plindrome/version"
 
-class String 
-  
+module NachosPalindrome 
+
   def palindrome?
     processed_content == processed_content.reverse
   end
 
-  def letters
-    self.chars.select { |char| char.match(/[a-z]/i) }.join
-  end
-
   private
     def processed_content
-      self.scan(/[a-z]/i).join.downcase
+      self.to_s.scan(/[a-z\d]/i).join.downcase
     end
-
 end
+
+class String 
+  include NachosPalindrome
+end
+
+class Integer 
+  include NachosPalindrome
+end   
